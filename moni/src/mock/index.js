@@ -1,11 +1,9 @@
 import Mock from "mockjs"
 
 Mock.mock("/machine/getIndustrial",{
-    msg:"mock拦截成功",
-    code:20000000000000000000,
-    data:{
+        "msg":"mock拦截成功",
         "msg": "操作成功",
-        "code": 200,
+        "code": 20000000000000000000,
         "data": [
             {
                 "baseMachineId": 112,
@@ -66276,6 +66274,6 @@ Mock.mock("/machine/getIndustrial",{
                 "showFactProduceRecords": []
             }
         ]
-    }
+    
 }
 )

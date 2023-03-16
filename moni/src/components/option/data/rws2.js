@@ -1,12 +1,12 @@
 import http from'../../../api/index'
-import '../../../mock/index'
+// import '../../../mock/index'
 import miao from '../../../utils/miao'
 
 
 export default async function ech2() {
     const ech_data = []
-    let {data} = await http("/machine/getIndustrial", "GET")
-    const res = data.data
+    let {data} = await http("/api/machine/getIndustrial", "GET")
+    const res = data
     // console.log(res);
     for (let i = 0; i < res.length; i++) {
         const ri = res[i];

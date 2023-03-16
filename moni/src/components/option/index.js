@@ -13,9 +13,12 @@ let ech5_data_2 = await ech5_2()
 
 
 export const option1 = {
+    legend:{
+
+    },
     xAxis:{
         type:'',
-        data:ech1_data.map(x=>`${x.machineName}_${x.changeRecordState}`)
+        data:[...new Set(ech1_data.ech_data_dj.map(x=>x.machineName))]
     },
     yAxis:{
         type:'value'
@@ -23,10 +26,25 @@ export const option1 = {
     series: [
         {
             type: 'bar',
-            data: ech1_data.map(x=>(x.miao/x.timer).toFixed(2))
-        }
+            name: "运行",
+            data: ech1_data.ech_data_yx.map(x=>x.miao)
+        },
+        {
+            type: 'bar',
+            name: "待机",
+            data: ech1_data.ech_data_dj.map(x=>x.miao)
+        },
+        {
+            type: 'bar',
+            name: "离线",
+            data: ech1_data.ech_data_lx.map(x=>x.miao)
+        },
     ]
 }
+console.log("option1===========================");
+console.log(option1.xAxis.data);
+console.log(option1.series[0].data);
+
 export const option2 = {
     xAxis:{
         type:'',
@@ -42,6 +60,9 @@ export const option2 = {
         }
     ]
 }
+console.log("option2=====================");
+console.log(option2.xAxis.data);
+console.log(option2.series[0].data);
 export const option3 = {
     xAxis:{
         type:'',
@@ -57,6 +78,9 @@ export const option3 = {
         }
     ]
 }
+console.log("option3===========");
+console.log(option3.xAxis.data);
+console.log(option3.series[0].data);
 export const option4 = {
     yAxis:{
         type:'',
@@ -72,6 +96,9 @@ export const option4 = {
         }
     ]
 }
+console.log("option4============================");
+console.log(option4.yAxis.data);
+console.log(option4.series[0].data);
 export const option5 = {
     xAxis:{
         type:'',
@@ -91,19 +118,6 @@ export const option5 = {
         },
     ]
 }
-
-export const option = {
-    xAxis:{
-        type:'',
-        data:['z','x']
-    },
-    yAxis:{
-        type:'value'
-    },
-    series: [
-        {
-            type: 'bar',
-            data: [1,2]
-        }
-    ]
-}
+console.log("option5==================");
+console.log(option5.xAxis.data);
+console.log(option5.series[0].data);

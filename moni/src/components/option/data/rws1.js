@@ -1,12 +1,14 @@
 import http from'../../../api/index'
-import '../../../mock/index'
+// import '../../../mock/index'
 import miao from '../../../utils/miao'
 
 
 export default async function ech1() {
-    let ech_data = []
-    let {data} = await http("/machine/getIndustrial", "GET")
-    const res = data.data
+    let ech_data_yx = []
+    let ech_data_lx = []
+    let ech_data_dj = []
+    let {data} = await http("/api/machine/getIndustrial", "GET")
+    const res = data
     // console.log(res);
     for (let i = 0; i < res.length; i++) {
         const ri = res[i];
@@ -31,12 +33,43 @@ export default async function ech1() {
                 }
             }
         }
+        if(dist.map(x=>x.changeRecordState).indexOf("运行") == -1){
+            dist.push({
+                machineName: ri.machineName,
+                changeRecordState:"运行",
+                miao:0
+            })
+
+        }
+        if(dist.map(x=>x.changeRecordState).indexOf("离线") == -1){
+            dist.push({
+                machineName: ri.machineName,
+                changeRecordState:"离线",
+                miao:0
+            })
+        }
+        if(dist.map(X=>X.changeRecordState).indexOf("待机") == -1){
+            dist.push({
+                machineName: ri.machineName,
+                changeRecordState:"待机",
+                miao:0
+            })
+        }
         // console.log(dist);
         for (let n = 0; n < dist.length; n++) {
             const dn = dist[n];
-            ech_data.push(dn)
+            if(dn.changeRecordState == "运行"){
+                ech_data_yx.push(dn)
+            }else if(dn.changeRecordState=="离线"){
+                ech_data_lx.push(dn)
+            }else if(dn.changeRecordState=="待机"){
+                ech_data_dj.push(dn)
+            }
         }
     }
-    return ech_data
+    // console.log(ech_data_yx);
+    // console.log(ech_data_dj);
+    // console.log(ech_data_lx);
+    return {ech_data_dj, ech_data_lx, ech_data_yx}
 }
 

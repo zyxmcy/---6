@@ -1,12 +1,13 @@
 import http from'../../../api/index'
-import '../../../mock/index'
+// import '../../../mock/index'
 import miao from '../../../utils/miao'
 
 
 export async function ech5_2() {
     const ech_data = []
-    let {data} = await http("/machine/getIndustrial", "GET")
-    const res = data.data
+    let {data} = await http("/api/machine/getIndustrial", "GET")
+    // console.log(data);
+    const res = data
     // console.log(res);
     const m = {}
     for (let i = 0; i < res.length; i++) {
@@ -53,13 +54,13 @@ export async function ech5_2() {
         }
         
     }
-    console.log(ech_data.map(x=>(x.total/x.timer)));
+    // console.log(ech_data.map(x=>(x.total/x.timer)));
     return ech_data.map(x=>(x.total/x.timer))
 }
 export async function ech5_1() {
     const ech_data = []
-    let {data} = await http("/machine/getIndustrial", "GET")
-    const res = data.data
+    let {data} = await http("/api/machine/getIndustrial", "GET")
+    const res = data
     // console.log(res);
     for (let i = 0; i < res.length; i++) {
         const ri = res[i];
